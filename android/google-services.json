@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "161530379659",
+    "project_id": "news-app-c4751",
+    "storage_bucket": "news-app-c4751.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:161530379659:android:eac27824db3cd08e6ec38e",
+        "android_client_info": {
+          "package_name": "com.news.paknews"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "161530379659-p99b92elm9hq1dlebclsqve9bagj66gl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5QG6u2-GbDA8dLA7ecatbzWP-YPrWavM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "161530379659-p99b92elm9hq1dlebclsqve9bagj66gl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
