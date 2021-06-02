@@ -17,12 +17,31 @@ class StreamPlayer extends StatefulWidget {
 }
 
 class _StreamPlayerState extends State<StreamPlayer> {
+  BetterPlayerController _controller;
   BannerAd _bannerAd;
   bool _isBannerAdReady = false;
 
   @override
   void initState() {
     super.initState();
+    playerConfig();
+    // getBanner();
+  }
+
+  playerConfig() {
+    BetterPlayerDataSource betterPlayerDataSource = BetterPlayerDataSource(
+        BetterPlayerDataSourceType.network, widget.channelURL,
+        liveStream: true);
+    _controller = BetterPlayerController(
+        BetterPlayerConfiguration(
+          aspectRatio: 16 / 9,
+          autoDetectFullscreenDeviceOrientation: true,
+          autoPlay: true,
+        ),
+        betterPlayerDataSource: betterPlayerDataSource);
+  }
+
+  getBanner() async {
     _bannerAd = BannerAd(
       adUnitId: 'ca-app-pub-3940256099942544/6300978111', //Ad for Testing
       request: AdRequest(),
@@ -46,11 +65,6 @@ class _StreamPlayerState extends State<StreamPlayer> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // bottomNavigationBar: _isBannerAdReady
-      //     ? Container(
-      //         child: AdWidget(ad: _bannerAd),
-      //       )
-      //     : Container(),
       appBar: AppBar(
           centerTitle: true,
           backgroundColor: Colors.transparent,
@@ -95,16 +109,19 @@ class _StreamPlayerState extends State<StreamPlayer> {
             ),
           )),
       body: Container(
-        color: Color(0xFF303030),
         child: Column(
           children: [
             Center(
-                child: BetterPlayer.network(widget.channelURL,
-                    betterPlayerConfiguration: BetterPlayerConfiguration(
-                      aspectRatio: 16 / 9,
-                      autoDetectFullscreenDeviceOrientation: true,
-                      autoPlay: true,
-                    ))),
+              child: BetterPlayer(
+                controller: _controller,
+              ),
+            ),
+            // _isBannerAdReady
+            //     ? Container(
+            //         height: 100,
+            //         child: AdWidget(ad: _bannerAd),
+            //       )
+            //     : Container(),
           ],
         ),
       ),
