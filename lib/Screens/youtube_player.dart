@@ -25,7 +25,7 @@ class _YPlayerState extends State<YPlayer> {
   void initState() {
     super.initState();
     playerConfig();
-    // getBanner();
+    getBanner();
   }
 
   playerConfig() {
@@ -45,7 +45,7 @@ class _YPlayerState extends State<YPlayer> {
 
   getBanner() async {
     _bannerAd = BannerAd(
-      adUnitId: 'ca-app-pub-3940256099942544/6300978111', //Ad for Testing
+      adUnitId: 'ca-app-pub-8292080667335054/2542252646', //Ad for Testing
       request: AdRequest(),
       size: AdSize.banner,
       listener: AdListener(
@@ -119,12 +119,12 @@ class _YPlayerState extends State<YPlayer> {
         body: Column(
           children: [
             player,
-            // _isBannerAdReady
-            //     ? Container(
-            //         height: 100,
-            //         child: AdWidget(ad: _bannerAd),
-            //       )
-            //     : Container(),
+            _isBannerAdReady
+                ? Container(
+                    height: 100,
+                    child: AdWidget(ad: _bannerAd),
+                  )
+                : Container(),
           ],
         ),
       ),

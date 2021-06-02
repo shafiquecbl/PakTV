@@ -18,14 +18,11 @@ class StreamPlayer extends StatefulWidget {
 
 class _StreamPlayerState extends State<StreamPlayer> {
   BetterPlayerController _controller;
-  BannerAd _bannerAd;
-  bool _isBannerAdReady = false;
 
   @override
   void initState() {
     super.initState();
     playerConfig();
-    // getBanner();
   }
 
   playerConfig() {
@@ -34,32 +31,12 @@ class _StreamPlayerState extends State<StreamPlayer> {
         liveStream: true);
     _controller = BetterPlayerController(
         BetterPlayerConfiguration(
+          looping: false,
           aspectRatio: 16 / 9,
           autoDetectFullscreenDeviceOrientation: true,
           autoPlay: true,
         ),
         betterPlayerDataSource: betterPlayerDataSource);
-  }
-
-  getBanner() async {
-    _bannerAd = BannerAd(
-      adUnitId: 'ca-app-pub-3940256099942544/6300978111', //Ad for Testing
-      request: AdRequest(),
-      size: AdSize.banner,
-      listener: AdListener(
-        onAdLoaded: (ad) {
-          setState(() {
-            _isBannerAdReady = true;
-          });
-        },
-        onAdFailedToLoad: (ad, err) {
-          print('Failed to load a banner ad: ${err.message}');
-          _isBannerAdReady = false;
-          ad.dispose();
-        },
-      ),
-    );
-    _bannerAd.load();
   }
 
   @override
@@ -108,22 +85,14 @@ class _StreamPlayerState extends State<StreamPlayer> {
               ],
             ),
           )),
-      body: Container(
-        child: Column(
-          children: [
-            Center(
-              child: BetterPlayer(
-                controller: _controller,
-              ),
+      body: Column(
+        children: [
+          Center(
+            child: BetterPlayer(
+              controller: _controller,
             ),
-            // _isBannerAdReady
-            //     ? Container(
-            //         height: 100,
-            //         child: AdWidget(ad: _bannerAd),
-            //       )
-            //     : Container(),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
