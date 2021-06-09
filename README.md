@@ -1,16 +1,9 @@
 # paktv
 
-A new Flutter project.
+A Flutter App for Pakistan News Channels
 
-## Getting Started
+**Some Demo Images**
 
-This project is a starting point for a Flutter application.
+![Screenshot_20210608-153817](https://user-images.githubusercontent.com/57300829/121359876-5cb59180-c94d-11eb-8a38-7c5921d05ddb.jpg)
+![Screenshot_20210608-153846](https://user-images.githubusercontent.com/57300829/121359882-5e7f5500-c94d-11eb-9586-bd55e624a78a.jpg)
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
