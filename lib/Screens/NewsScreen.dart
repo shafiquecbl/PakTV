@@ -2,38 +2,74 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../Components/channelCard.dart';
+import 'Settings/Settings.dart';
 
-class NewsScreen extends StatelessWidget {
+class NewsScreen extends StatefulWidget {
+  @override
+  _NewsScreenState createState() => _NewsScreenState();
+}
+
+class _NewsScreenState extends State<NewsScreen> {
+  String link;
+  @override
+  void initState() {
+    super.initState();
+    FirebaseFirestore.instance
+        .collection('Link')
+        .doc('Link')
+        .get()
+        .then((value) {
+      link = value['link'];
+      print(link);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          centerTitle: true,
-          title: Container(
-            width: 200,
-            height: 45,
-            decoration: BoxDecoration(
-                color: Colors.blueAccent.withOpacity(0.3),
-                borderRadius: BorderRadius.all(Radius.circular(30))),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(Icons.live_tv, color: Colors.blueAccent),
-                SizedBox(
-                  width: 15,
-                ),
-                Text('News',
-                    style: GoogleFonts.teko(
-                      color: Colors.blueAccent,
-                      fontSize: 22,
-                      fontWeight: FontWeight.w600,
-                    )),
-                SizedBox(
-                  width: 5,
-                ),
-              ],
-            ),
-          )),
+        centerTitle: true,
+        title: Container(
+          width: 200,
+          height: 45,
+          decoration: BoxDecoration(
+              color: Colors.blueAccent.withOpacity(0.3),
+              borderRadius: BorderRadius.all(Radius.circular(30))),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(Icons.live_tv, color: Colors.blueAccent),
+              SizedBox(
+                width: 15,
+              ),
+              Text('News',
+                  style: GoogleFonts.teko(
+                    color: Colors.blueAccent,
+                    fontSize: 22,
+                    fontWeight: FontWeight.w600,
+                  )),
+              SizedBox(
+                width: 5,
+              ),
+            ],
+          ),
+        ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 8.0),
+            child: IconButton(
+                icon: Icon(Icons.settings),
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (builder) => Setting(
+                                link: link,
+                              )));
+                }),
+          )
+        ],
+      ),
       body: StreamBuilder(
         stream: FirebaseFirestore.instance
             .collection('Channels')

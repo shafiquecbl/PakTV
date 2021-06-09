@@ -2,8 +2,28 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:paktv/Components/channelCard.dart';
+import 'package:paktv/Screens/Settings/Settings.dart';
 
-class OtherScreen extends StatelessWidget {
+class OtherScreen extends StatefulWidget {
+  @override
+  _OtherScreenState createState() => _OtherScreenState();
+}
+
+class _OtherScreenState extends State<OtherScreen> {
+  String link;
+  @override
+  void initState() {
+    super.initState();
+    FirebaseFirestore.instance
+        .collection('Link')
+        .doc('Link')
+        .get()
+        .then((value) {
+      link = value['link'];
+      print(link);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,6 +54,21 @@ class OtherScreen extends StatelessWidget {
             ],
           ),
         ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 8.0),
+            child: IconButton(
+                icon: Icon(Icons.settings),
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (builder) => Setting(
+                                link: link,
+                              )));
+                }),
+          )
+        ],
       ),
       body: StreamBuilder(
         stream: FirebaseFirestore.instance

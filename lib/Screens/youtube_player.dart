@@ -36,7 +36,7 @@ class _YPlayerState extends State<YPlayer> {
         autoPlay: true,
         disableDragSeek: false,
         loop: false,
-        isLive: false,
+        isLive: true,
         forceHD: false,
         enableCaption: true,
       ),
@@ -45,7 +45,7 @@ class _YPlayerState extends State<YPlayer> {
 
   getBanner() async {
     _bannerAd = BannerAd(
-      adUnitId: 'ca-app-pub-8292080667335054/2542252646', //Ad for Testing
+      adUnitId: 'ca-app-pub-8292080667335054/4448664014',
       request: AdRequest(),
       size: AdSize.banner,
       listener: AdListener(
