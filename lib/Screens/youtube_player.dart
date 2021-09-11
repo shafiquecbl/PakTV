@@ -3,6 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:paktv/ad/get_ad.dart';
+import 'package:provider/provider.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class YPlayer extends StatefulWidget {
@@ -19,14 +21,13 @@ class YPlayer extends StatefulWidget {
 
 class _YPlayerState extends State<YPlayer> {
   YoutubePlayerController _controller;
-  BannerAd _bannerAd;
-  bool _isBannerAdReady = false;
-  @override
-  void initState() {
-    super.initState();
-    playerConfig();
-    getBanner();
-  }
+  // @override
+  // void initState() {
+  //   playerConfig();
+  //   var getAd = Provider.of<GetAd>(context, listen: false);
+  //   getAd.getBanner();
+  //   super.initState();
+  // }
 
   playerConfig() {
     _controller = YoutubePlayerController(
@@ -41,27 +42,6 @@ class _YPlayerState extends State<YPlayer> {
         enableCaption: true,
       ),
     );
-  }
-
-  getBanner() async {
-    _bannerAd = BannerAd(
-      adUnitId: 'ca-app-pub-8292080667335054/4448664014',
-      request: AdRequest(),
-      size: AdSize.banner,
-      listener: AdListener(
-        onAdLoaded: (ad) {
-          setState(() {
-            _isBannerAdReady = true;
-          });
-        },
-        onAdFailedToLoad: (ad, err) {
-          print('Failed to load a banner ad: ${err.message}');
-          _isBannerAdReady = false;
-          ad.dispose();
-        },
-      ),
-    );
-    _bannerAd.load();
   }
 
   @override
@@ -119,14 +99,16 @@ class _YPlayerState extends State<YPlayer> {
         body: Column(
           children: [
             player,
-            _isBannerAdReady
-                ? Container(
-                    height: 100,
-                    child: AdWidget(ad: _bannerAd),
-                  )
-                : Container(),
           ],
         ),
+        // bottomNavigationBar: Consumer<GetAd>(builder: (context, data, child) {
+        //       return data.isBannerReady()
+        //           ? Container(
+        //               height: 100,
+        //               child: AdWidget(ad: data.getBannerAd()),
+        //             )
+        //           : Container();
+        //     })
       ),
     );
   }

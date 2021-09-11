@@ -24,6 +24,7 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.2
+  provider: ^5.0.0
   
   cached_network_image: ^3.0.0
   bottom_navy_bar: ^6.0.0
@@ -38,6 +39,8 @@ dependencies:
   
   better_player: ^0.0.66
   youtube_player_flutter:
+  chewie:
+  video_player:
   
   google_mobile_ads: ^0.12.2
   flutter_admob_app_open: ^1.0.4

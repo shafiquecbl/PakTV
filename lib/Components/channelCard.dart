@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:paktv/ad/get_ad.dart';
+import 'package:provider/provider.dart';
 import '../Screens/stream_player.dart';
 import '../Screens/youtube_player.dart';
 
@@ -27,17 +29,19 @@ class ChannelCard extends StatelessWidget {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (_) => channelURL.length < 15
-                        ? YPlayer(
-                            channelURL: channelURL,
-                            channelName: channelName,
-                            channelImage: channelImage,
-                          )
-                        : StreamPlayer(
-                            channelURL: channelURL,
-                            channelName: channelName,
-                            channelImage: channelImage,
-                          )));
+                    builder: (_) => ChangeNotifierProvider(
+                        create: (context) => GetAd(),
+                        child: channelURL.length < 15
+                            ? YPlayer(
+                                channelURL: channelURL,
+                                channelName: channelName,
+                                channelImage: channelImage,
+                              )
+                            : StreamPlayer(
+                                channelURL: channelURL,
+                                channelName: channelName,
+                                channelImage: channelImage,
+                              ))));
           },
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

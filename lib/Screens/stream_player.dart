@@ -2,6 +2,9 @@ import 'package:better_player/better_player.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:paktv/ad/get_ad.dart';
+import 'package:provider/provider.dart';
 
 class StreamPlayer extends StatefulWidget {
   final String channelURL;
@@ -18,11 +21,13 @@ class StreamPlayer extends StatefulWidget {
 class _StreamPlayerState extends State<StreamPlayer> {
   BetterPlayerController _controller;
 
-  @override
-  void initState() {
-    super.initState();
-    playerConfig();
-  }
+  // @override
+  // void initState() {
+  //   playerConfig();
+  //   var getAd = Provider.of<GetAd>(context, listen: false);
+  //   getAd.getBanner();
+  //   super.initState();
+  // }
 
   playerConfig() {
     BetterPlayerDataSource betterPlayerDataSource = BetterPlayerDataSource(
@@ -86,13 +91,19 @@ class _StreamPlayerState extends State<StreamPlayer> {
           )),
       body: Column(
         children: [
-          Center(
-            child: BetterPlayer(
-              controller: _controller,
-            ),
+          BetterPlayer(
+            controller: _controller,
           ),
         ],
       ),
+      // bottomNavigationBar: Consumer<GetAd>(builder: (context, data, child) {
+      //   return data.isBannerReady()
+      //       ? Container(
+      //           height: 100,
+      //           child: AdWidget(ad: data.getBannerAd()),
+      //         )
+      //       : Container();
+      // }),
     );
   }
 }
