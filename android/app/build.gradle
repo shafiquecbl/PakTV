@@ -35,7 +35,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.news.paknews"
+        applicationId "com.securehops.paknews"
         minSdkVersion 21
         targetSdkVersion 30
         versionCode flutterVersionCode.toInteger()
@@ -43,11 +43,20 @@ android {
         multiDexEnabled true
     }
 
+    signingConfigs {
+    release {
+        storeFile file('myKeystore.keystore')
+        storePassword '949176200'
+        keyAlias 'my_key_alias'
+        keyPassword '9491762'
+    }
+}
+
     buildTypes {
         release {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
         }
     }
 }

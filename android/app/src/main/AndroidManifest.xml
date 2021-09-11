@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.news.paknews">
+    package="com.securehops.paknews">
    <application
         android:label="PakTV"
         android:icon="@mipmap/ic_launcher">

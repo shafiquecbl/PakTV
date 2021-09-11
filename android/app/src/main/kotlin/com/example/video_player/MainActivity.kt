@@ -1,4 +1,4 @@
-package com.news.paknews
+package com.securehops.paknews
 
 import io.flutter.embedding.android.FlutterActivity
 
