@@ -18,13 +18,13 @@ class StreamPlayer extends StatefulWidget {
 class _StreamPlayerState extends State<StreamPlayer> {
   BetterPlayerController _controller;
 
-  // @override
-  // void initState() {
-  //   playerConfig();
-  //   var getAd = Provider.of<GetAd>(context, listen: false);
-  //   getAd.getBanner();
-  //   super.initState();
-  // }
+  @override
+  void initState() {
+    playerConfig();
+    // var getAd = Provider.of<GetAd>(context, listen: false);
+    // getAd.getBanner();
+    super.initState();
+  }
 
   playerConfig() {
     BetterPlayerDataSource betterPlayerDataSource = BetterPlayerDataSource(

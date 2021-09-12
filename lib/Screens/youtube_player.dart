@@ -18,13 +18,13 @@ class YPlayer extends StatefulWidget {
 
 class _YPlayerState extends State<YPlayer> {
   YoutubePlayerController _controller;
-  // @override
-  // void initState() {
-  //   playerConfig();
-  //   var getAd = Provider.of<GetAd>(context, listen: false);
-  //   getAd.getBanner();
-  //   super.initState();
-  // }
+  @override
+  void initState() {
+    playerConfig();
+    // var getAd = Provider.of<GetAd>(context, listen: false);
+    // getAd.getBanner();
+    super.initState();
+  }
 
   playerConfig() {
     _controller = YoutubePlayerController(
